@@ -1,0 +1,69 @@
+body {
+    height: 300px;
+    width: 250px;
+    padding: 0;
+    margin: 0;
+    background-color: #F2F2F2;
+}
+
+header {
+    height: 80px;
+}
+
+header>img {
+    height: 80px;
+    margin: 15px;
+    margin: auto;
+    display: block;
+}
+
+main {
+}
+
+.bouton {
+    background-color: #7C87A6;
+    color: #F2F2F2;
+    padding: 10px;
+    border-radius: 5px;
+    display: inline-block;
+    cursor: pointer;
+}
+
+#footersvg {
+    position: absolute;
+    bottom: 0;
+    transform: translateZ(0);
+    fill: #7f96f9;
+    z-index: -1;
+}
+
+footer {
+    position: absolute;
+    bottom: 5px;
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    width: 100%;
+}
+
+footer>* {
+    margin: 2px;
+}
+
+footer a {
+    color: black;
+    display: flex;
+}
+
+footer a p {
+    margin: 0;
+}
+
+footer a img {
+    height: 15px;
+    margin-right: 5px;
+}
+
+#heart {
+    color: #e25555;
+}
