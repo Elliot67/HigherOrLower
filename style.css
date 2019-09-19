@@ -1,3 +1,7 @@
+:root{
+    --couleur-bouton-off: red;
+}
+
 body {
     height: 350px;
     width: 250px;
@@ -101,15 +105,21 @@ footer a img {
 }
 
 .impossible>.bulle1 {
-    background-color: red;
-    opacity: 0.2;
+    background-color: var(--couleur-bouton-off);
+    opacity: 0.3;
     animation-duration: 0.6s;
 }
 
 .impossible>.bulle2 {
-    background-color: red;
+    background-color: var(--couleur-bouton-off);
     opacity: 0.2;
     animation-duration: 0.4s;
+}
+
+.impossible>.bulle3 {
+    background-color: var(--couleur-bouton-off);
+    opacity: 0.4;
+    animation-duration: 0.7s;
 }
 
 .impossible>div {

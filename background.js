@@ -1,12 +1,23 @@
 console.log('Je suis le background script');
 
+chrome.runtime.onInstalled.addListener(function () {
+    fetch('data.txt')
+        .then(response => response.text())
+        .then(data => {
+            chrome.storage.local.set({ bdd: data }, () => console.log('BDD vide, les données ont été ajoutées'));
+        });
+});
+
+
 let timer;
+let state = false;
 
 chrome.runtime.onMessage.addListener(
     function (request, sender, sendResponse) {
         if (request.msg == "startBackground") {
-            console.log('On commence');
+            state = true;
             console.group();
+            console.log('On commence');
             let tabId;
             let promise = new Promise((resolve, reject) => {
                 console.log('je cherche la fenêtre active');
@@ -29,6 +40,15 @@ chrome.runtime.onMessage.addListener(
             console.log('On arrête');
             clearInterval(timer);
             console.groupEnd();
+            state = false;
+        }
+        else if (request.msg == "running?") {
+            if (state) {
+                chrome.runtime.sendMessage({ msg: "running?yes" });
+            } else {
+                chrome.runtime.sendMessage({ msg: "running?no" });
+            }
+            console.log('Reponse à la question:' + state);
         }
     }
 );
