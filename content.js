@@ -3,7 +3,6 @@ console.log('Je suis content.js');
 let table;
 
 chrome.runtime.onMessage.addListener(() => {
-	console.log('je fais mon travail');
 	if (document.getElementsByClassName('term-keyword__keyword')[0]) { // On est sur la bonne page
 		new Promise((resolve, reject) => {
 			chrome.storage.local.get(['bdd'], function (result) {
@@ -20,30 +19,31 @@ chrome.runtime.onMessage.addListener(() => {
 
 
 function setBDD(titre, valeur){
-	console.log('Ajout dans la BDD');
+	console.log('Ajout dans la BDD: ' + titre + "-" + valeur);
 	let data = titre + '.' + valeur + '-';
 	table += data;
-	chrome.storage.local.set({ bdd: table }, () => { console.log("BDD mise à jour"); });
+	chrome.storage.local.set({ bdd: table }, () => console.log("BDD mise à jour"));
 }
 
 function rechercheDansBDD(titre, valeur){
-	var mot = '-' + titre + '.';
-	var emplacement = table.indexOf(mot);
+	let mot = '-' + titre + '.';
+	let emplacement = table.indexOf(mot);
 
 	if(emplacement != -1){
 		let valeurChercher = table.substring(emplacement + 1, emplacement + 50);
+		console.log(valeurChercher);
 		valeurChercher = valeurChercher.match(/^[A-Za-z0-9-(+{}_<>)^`%£*$µ@#| ~&'"\[\]\/]+\.[0-9,]+/g); // Filtrage des données, on a alors le nom et le nombre
 		valeurChercher = valeurChercher[0].match(/\.[0-9,]+/g); // Deuxième filtrage, on a uniquement le nombre
 		valeurChercher = valeurChercher[0].replace(/,/gi, ''); // Supprimer les ',' si il y en a
 		valeur = valeurChercher.substring(1, valeurChercher.length);
 		return valeur;
 	}
-	else if(emplacement == -1 && valeur != "") { // Pas dans la BDD
+	else if(emplacement == -1 && valeur) { // Pas dans la BDD
 		setBDD(titre, valeur);
 	}
 	else{
+		console.log("Pas dans la BDD");
 		choixAleatoire();
-		console.log("J'enregistre tout");
 		setTimeout(function () {
 			let valeur = parseInt(document.getElementsByClassName('term-volume__volume')[1].innerText.replace(/,/g, ''));
 			setBDD(titre, valeur);
@@ -73,17 +73,16 @@ function choixAleatoire(){
 
 
 function run(){
-
-	// Trouver la première valeur
+	// Element de gauche
 	let titre1 = document.getElementsByClassName('term-keyword__keyword')[0].innerText.replace(/[“ ”]/g, '');
 	let valeur1 = parseInt(document.getElementsByClassName('term-volume__volume')[0].innerText.replace(/,/g, ''));
 
-	// Trouver la deuxieme valeur
+	// Element de droite
 	let titre2 = document.getElementsByClassName('term-keyword__keyword')[1].innerText.replace(/[“ ”]/g, '');
 
 	rechercheDansBDD(titre1, valeur1);
-	let valeur2 = rechercheDansBDD(titre2, '');
-	if(valeur2 != ""){
+	let valeur2 = rechercheDansBDD(titre2, false);
+	if(valeur2){
 		choix(valeur1, valeur2);
 	}
 }
@@ -91,7 +90,7 @@ function run(){
 function startGame(){
 	console.log('Je lance le jeu');
 	if (document.getElementById('game-over-btn')) {
-		console.log('_____________DEFAITE_____________');
+		console.log('________DEFAITE________');
 		document.getElementById('game-over-btn').click();
 	}
 	else {
