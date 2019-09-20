@@ -3,7 +3,8 @@ console.log('Je suis popup.js');
 // Initialisation boutons
 let boutonStart = document.getElementById('start');
 let boutonStop = document.getElementById('stop');
-let boutonCheck = document.getElementById('check');
+let boutonCopy = document.getElementById('copy');
+let dataContainer = document.getElementById('dataContainer');
 
 // Le background est-il en train de tourner ?
 let state;
@@ -38,9 +39,4 @@ boutonStop.addEventListener('click', () => {
         chrome.runtime.sendMessage({ msg: "stopBackground" });
         console.log('Stop Background');
     }
-});
-
-boutonCheck.addEventListener('click', () => {
-    chrome.runtime.sendMessage({ msg: "check" });
-    console.log('Check BDD');
 });
