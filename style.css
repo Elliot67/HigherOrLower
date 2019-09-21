@@ -3,7 +3,7 @@
 }
 
 body {
-    height: 350px;
+    height: 360px;
     width: 250px;
     padding: 0;
     margin: 0;
@@ -112,17 +112,84 @@ main {
     left: 0;
     width: 250px;
     height: 250px;
-    background-image: radial-gradient(#e2b34fb9 0%, #e2b34fb9 30%, #00800000 36%),
-    radial-gradient(#ffaf002b 0%, #ffaf002b 40%, #00800000 46%),
-    radial-gradient(#ffe500bb 20%, #00800000 65%);
+    background-image: radial-gradient(#e2b34fb9 0%, #e2b34fb9 30%, #00800000 36%), radial-gradient(#ffaf002b 0%, #ffaf002b 40%, #00800000 46%), radial-gradient(#ffe500bb 20%, #00800000 65%);
 }
 
-#bateau{
+#bateau {
     position: absolute;
     left: 50%;
     fill: red;
     width: 60px;
     transform: translateX(-50%) scaleX(-1);
+}
+
+.vagueContainer {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+}
+
+.vague{
+    animation-name: vagueMouvement;
+    animation-iteration-count: infinite;
+    animation-timing-function: linear;
+}
+
+.vague svg{
+    width: 200%;
+    position: absolute;
+    top:0;
+    left: 0;
+}
+
+.vague1{
+    animation-duration: 10s;
+}
+
+.vague1 path {
+    fill: #677fe9;
+}
+
+.vague2{
+    animation-duration: 6s;
+}
+
+.vague2 path {
+    fill: #1734b9;
+}
+
+.vague3{
+    animation-duration: 3s;
+}
+
+.vague3 path {
+    fill: #3657eb;
+}
+
+.vague4{
+    animation-duration: 8s;
+}
+
+.vague4 path {
+    fill: #3e86e6;
+}
+
+.vague5{
+    animation-duration: 8s;
+}
+
+.vague5 path {
+    fill: #2b43af;
+}
+
+@keyframes vagueMouvement{
+    0%{
+        transform: translateX(0%);
+    }
+    100%{
+        transform: translateX(-100%);
+    }
 }
 
 #footersvg {
