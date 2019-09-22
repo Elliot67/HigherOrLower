@@ -115,12 +115,34 @@ main {
     background-image: radial-gradient(#e2b34fb9 0%, #e2b34fb9 30%, #00800000 36%), radial-gradient(#ffaf002b 0%, #ffaf002b 40%, #00800000 46%), radial-gradient(#ffe500bb 20%, #00800000 65%);
 }
 
-#bateau {
+#bateauContainer{
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+}
+
+.bateau{
     position: absolute;
     left: 50%;
-    fill: red;
     width: 60px;
-    transform: translateX(-50%) scaleX(-1);
+    animation-name: mouvementBateau;
+    animation-duration: 3s;
+    animation-iteration-count: infinite;
+    animation-timing-function: linear;
+    transform-origin: bottom center;
+}
+
+@keyframes mouvementBateau{
+    0%{
+        transform: translateX(-50%) scaleX(-1) translateY(-3px) rotate(5deg);
+    }
+    50%{
+        transform: translateX(-50%) scaleX(-1) translateY(5px) rotate(-2deg);
+    }
+    100%{
+        transform: translateX(-50%) scaleX(-1) translateY(-3px) rotate(5deg);
+    }
 }
 
 .vagueContainer {
@@ -131,7 +153,7 @@ main {
 }
 
 .vague{
-    animation-name: vagueMouvement;
+    animation-name: mouvementVague;
     animation-iteration-count: infinite;
     animation-timing-function: linear;
 }
@@ -183,13 +205,114 @@ main {
     fill: #2b43af;
 }
 
-@keyframes vagueMouvement{
+.vague6{
+    animation-duration: 3.5s;
+}
+
+.vague6 path {
+    fill: #1757ac;
+}
+
+.vague7{
+    animation-duration: 4s;
+}
+
+.vague7 path {
+    fill: #1444e4;
+}
+
+.vague8{
+    animation-duration: 9s;
+}
+
+.vague8 path {
+    fill: #709cdf;
+}
+
+.vague9{
+    animation-duration: 2.5s;
+}
+
+.vague9 path {
+    fill: #3b4acf;
+}
+
+.vague10{
+    animation-duration: 8s;
+}
+
+.vague10 path {
+    fill: #356fd5;
+}
+
+@keyframes mouvementVague{
     0%{
         transform: translateX(0%);
     }
     100%{
         transform: translateX(-100%);
     }
+}
+
+.traitContainer{
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+}
+
+.trait{
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+}
+
+.trait svg{
+    fill: none;
+    stroke-width: 1px;
+    stroke-dasharray: 10%, 120%;
+    animation-name: mouvementTrait; 
+    animation-iteration-count: infinite;
+    stroke-dashoffset: 10%;
+    stroke: #000000;
+}
+
+@keyframes mouvementTrait{
+    0%{
+        stroke-dashoffset: 10%;
+    }
+    20%{
+        stroke-dashoffset: -90%;
+    }
+    100%{
+        stroke-dashoffset: -90%;
+    }
+}
+
+.trait1 svg{
+    animation-duration: 8s;
+    animation-delay: 4s;
+}
+
+.trait2 svg{
+    animation-duration: 9s;
+    animation-delay: 6s;
+}
+
+.trait3 svg{
+    animation-duration: 10s;
+    animation-delay: 1s;
+}
+
+.trait4 svg{
+    animation-duration: 11s;
+    animation-delay: 7s;
+}
+
+.trait5 svg{
+    animation-duration: 14s;
+    animation-delay: 6s;
 }
 
 #footersvg {
@@ -235,4 +358,18 @@ footer a img {
 #out {
     position: absolute;
     bottom: -200px;
+}
+
+.stopped #bateauContainer{
+    transform: translateX(-100%);
+    transition-duration: 4s;
+}
+
+.stoppedEnd #bateauContainer{
+    transform: translateX(0);
+    transition-duration: 4s;
+}
+
+.stopped .trait svg{
+    display: none;
 }
