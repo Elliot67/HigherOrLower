@@ -1,7 +1,7 @@
 # Higher Or Lower I Know
 
 ## What is Higher Or Lower I Know ?
-Higher Or Lower I Know is a non official extension for [The Higher Or Lower](www.higherlowergame.com) game.
+Higher Or Lower I Know is a non official extension for [The Higher Or Lower](https://www.higherlowergame.com) game.
 It enable you to beat your highscore without any effort.
 
 ## How do I download it ?
